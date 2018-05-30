@@ -1,0 +1,36 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.5.RELEASE"
+    }
+}
+
+apply plugin: "io.spring.dependency-management"
+
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencyManagement {
+    dependencies {
+        dependency 'org.junit.jupiter:junit-jupiter-api:5.2.0'
+        dependency 'org.junit.jupiter:junit-jupiter-params:5.2.0'
+        dependency 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform {
+        includeTags 'fast'
+    }
+}
